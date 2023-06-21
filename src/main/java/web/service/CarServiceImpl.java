@@ -13,7 +13,12 @@ public class CarServiceImpl implements CarService {
     private CarDao carDao;
 
     @Override
-    public List<Car> getCars(int count) {
-        return carDao.getCars(count);
+    public List<Car> getCarsByCount(int count) {
+        List<Car> carList = carDao.getCars();
+        if (count >= carList.size()) {
+            return carList;
+        } else {
+            return carList.subList(0, count);
+        }
     }
 }
